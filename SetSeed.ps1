@@ -1,3 +1,8 @@
+<#
+    Run the game with custom seed. Only 1-4294967295 are valid.
+    It will delete your current world. You have been warned.
+#>
+$ErrorActionPreference='silentlycontinue'
 param (
 	[string]$seed = $(Read-Host "Enter seed"),
 	[string]$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
@@ -5,7 +10,6 @@ param (
 if($gamepath -eq $null) {
 	$gamepath = "."
 }
-$ErrorActionPreference='silentlycontinue'
 Remove-Item $gamepath\magic.txt
 $magic = "<MagicNumbers WORLD_SEED=`"$seed`" />"
 [System.IO.File]::WriteAllLines("$gamepath\magic.txt", $magic)

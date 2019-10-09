@@ -1,3 +1,7 @@
+<#
+    This just checks a bunch of seeds (1-1000) and takes screenshots of the spawn.
+    I was looking for chests in spawn, found plenty!
+#>
 [Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 function screenshot([Drawing.Rectangle]$bounds, $path) {
 	$bmp = New-Object Drawing.Bitmap $bounds.width, $bounds.height

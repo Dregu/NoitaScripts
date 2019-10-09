@@ -1,10 +1,14 @@
+<#
+    This one checks your current seed from the log for LCAP recipes using Zatherszszzs site.
+    It will update on new game too.
+#>
+$ErrorActionPreference='silentlycontinue'
 param (
 	[string]$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
 )
 if($gamepath -eq $null) {
 	$gamepath = "."
 }
-$ErrorActionPreference='silentlycontinue'
 $lastseed = 0
 while($true) {
 	$seed = Select-String -Path "$gamepath\logger.txt" -Pattern 'World seed: (.*)$' | foreach { $_.Matches.Groups[1].Value }
