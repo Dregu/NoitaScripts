@@ -3,9 +3,7 @@
     It will update on new game too.
 #>
 $ErrorActionPreference='silentlycontinue'
-param (
-	[string]$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
-)
+$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
 if($gamepath -eq $null) {
 	$gamepath = "."
 }

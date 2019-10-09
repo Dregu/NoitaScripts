@@ -2,11 +2,11 @@
     Run the game with custom seed. Only 1-4294967295 are valid.
     It will delete your current world. You have been warned.
 #>
-$ErrorActionPreference='silentlycontinue'
 param (
-	[string]$seed = $(Read-Host "Enter seed"),
-	[string]$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
+	[string]$seed = $(Read-Host "Enter seed")
 )
+$ErrorActionPreference='silentlycontinue'
+$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
 if($gamepath -eq $null) {
 	$gamepath = "."
 }
