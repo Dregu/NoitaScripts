@@ -1,6 +1,6 @@
 # Noita Scripts
 
-Some hax for Noita.
+Custom seeds, alchemy recipes and some other junk.
 
 These scripts should work in any directory if you have Noita on Steam or GOG, otherwise put them in the gamedir or edit the script.
 
