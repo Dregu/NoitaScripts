@@ -3,9 +3,22 @@
     It will update on new game too.
 #>
 $ErrorActionPreference='silentlycontinue'
-$gamepath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
-if($gamepath -eq $null) {
-	$gamepath = "."
+$gamepath = "."
+$steampath = (Get-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 881100").GetValue("InstallLocation")
+$gogpath = (Get-Item "HKLM:\SOFTWARE\WOW6432Node\GOG.com\Games\1310457090").GetValue("path")
+if(Test-Path $gamepath\noita.exe) {
+	Write-Host "Found game in $gamepath"
+} elseif($steampath -ne $null) {
+	Write-Host "Found game on Steam"
+	$gamepath = $steampath
+} elseif($gogpath -ne $null) {
+	Write-Host "Found game on GOG"
+	$gamepath = $gogpath
+}
+if((Test-Path $gamepath\noita.exe) -eq $false) {
+	Write-Host "I can't find your game! Put me where noita.exe is or edit the gamepath to point to the installation directory."
+	Pause
+	Exit 1
 }
 $lastseed = 0
 while($true) {
